@@ -17,7 +17,8 @@ Image containing .Net4.5 and IIS plus required IIS extensions
 # Issues
 Installation of Fature "WCF-Pipe-Activation45" fails
 
-```Error: 0x800f0922
+```
+Error: 0x800f0922
 
 DISM failed. No operation was performed.
 For more information, review the log file.
@@ -27,7 +28,8 @@ The command 'cmd /S /C
 
 Activation45 /all' returned a non-zero code: 2
 
-148469026```
+148469026
+```
 
 Output C:\Windows\Logs\DISM\dism.log
 ```...
@@ -130,4 +132,5 @@ irst merged sequence: 82, pending decision: InteractiveInstallFailed, primitive 
 2017-03-10 10:24:32, Info                  CBS    Session: 30579072_298067563 finalized. Reboot required: no [HRESULT = 0x800f0922 - CBS_E_INSTALLERS_FAILED]
 2017-03-10 10:24:32, Info                  CBS    Failed to FinalizeEx using worker session [HRESULT = 0x800f0922]
 2017-03-10 10:26:32, Info                  CBS    Trusted Installer is shutting down because: SHUTDOWN_REASON_AUTOSTOP
-...```
+...
+```
