@@ -1,1 +1,4 @@
-docker build -t jenkins:0.1 .
+tag=jenkins:0.2
+docker build -t $tag .
+docker tag $tag papanito/jenkins
+docker push papanito/jenkins
