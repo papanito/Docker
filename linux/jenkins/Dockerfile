@@ -1,6 +1,14 @@
-FROM jenkins
+FROM jenkins/jenkins
 USER root
-RUN sudo apt-get install dotnet-sdk-2.0.0
-USER jenkins # drop back to the regular jenkins user - good practice
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+RUN mv microsoft.gpg /etc/apt/trusted.gpg.d/microsoft.gpg
+RUN sh -c 'echo "deb [arch=amd64] http://httpredir.debian.org/debian jessie-backports main" > /etc/apt/sources.list.d/backports.list'
+RUN sh -c 'echo "deb [arch=amd64] http://httpredir.debian.org/debian oldstable main" > /etc/apt/sources.list.d/jessiestable.list'
+RUN sh -c 'echo "deb [arch=amd64] http://packages.microsoft.com/debian/8/prod jessie main" > /etc/apt/sources.list.d/dotnetdev.list'
+#RUN sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-stretch-prod stretch main" > /etc/apt/sources.list.d/dotnetdev.list'
+RUN apt-get update
+RUN apt-get --assume-yes install dotnet-runtime-2.0.0 dotnet-sdk-2.0.0
+# drop back to the regular jenkins user - good practice
+USER jenkins 
 #COPY plugins.txt /usr/share/jenkins/ref/
 #RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
