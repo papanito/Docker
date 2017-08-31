@@ -7,7 +7,7 @@ RUN sh -c 'echo "deb [arch=amd64] http://httpredir.debian.org/debian oldstable m
 RUN sh -c 'echo "deb [arch=amd64] http://packages.microsoft.com/debian/8/prod jessie main" > /etc/apt/sources.list.d/dotnetdev.list'
 #RUN sh -c 'echo "deb [arch=amd64] https://packages.microsoft.com/repos/microsoft-debian-stretch-prod stretch main" > /etc/apt/sources.list.d/dotnetdev.list'
 RUN apt-get update
-RUN apt-get --assume-yes install dotnet-runtime-2.0.0 dotnet-sdk-2.0.0
+RUN apt-get --assume-yes install dotnet-runtime-2.0.0 dotnet-sdk-2.0.0 nuget
 # drop back to the regular jenkins user - good practice
 USER jenkins 
 #COPY plugins.txt /usr/share/jenkins/ref/
