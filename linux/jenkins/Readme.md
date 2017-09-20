@@ -4,4 +4,5 @@ Base Jenkins image (https://docs.docker.com/samples/library/jenkins) with additi
    .Net Core 2.0.0 (https://www.microsoft.com/net/download/linux)
 
 # Issues
-None (as far as I know)
+Workaround implemented: Currently libcurl3 has to be downgraded so that we don't run into segmentation fault when using dotnet run/build/...
+https://github.com/dotnet/core/issues/963
