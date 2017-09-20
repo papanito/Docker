@@ -10,7 +10,7 @@ RUN apt-get update
 
 # Downgrading of libcurl is a required workaround to avoid segmentation fault when using dotnet build/run/...
 # https://github.com/dotnet/core/issues/963
-RUN apt-get --assume-yes install dotnet-runtime-2.0.0 dotnet-sdk-2.0.0 nuget libcurl3=7.38.0-4+deb8u5
+RUN apt-get --assume-yes --allow-downgrades install dotnet-runtime-2.0.0 dotnet-sdk-2.0.0 nuget libcurl3=7.38.0-4+deb8u5
 
 # drop back to the regular jenkins user - good practice
 USER jenkins 
