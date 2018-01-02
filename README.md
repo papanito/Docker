@@ -31,3 +31,7 @@ export DOCKER_ID_USER="papanito"
 docker tag $IMAGETAG $DOCKER_ID_USER/$IMAGETAG
 docker push $DOCKER_ID_USER/$IMAGETAG
 ```
+
+## CI
+
+Use travis: More docu to follow
