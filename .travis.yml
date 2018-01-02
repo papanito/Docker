@@ -1,2 +1,2 @@
 script:
-- docker build ./linux/jenkins/Dockerfile
+- docker build ./linux/jenkins/
