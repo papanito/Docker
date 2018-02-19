@@ -32,6 +32,22 @@ docker tag $IMAGETAG $DOCKER_ID_USER/$IMAGETAG
 docker push $DOCKER_ID_USER/$IMAGETAG
 ```
 
+
+### re-create container
+
+```bash
+docker-compose up -d --no-deps --force-recreate --build jenkins
+```
+
+### attach interactive terminal
+
+```bash
+# by ID
+sudo docker exec -i -t 665b4a1e17b6 /bin/bash
+#by name
+sudo docker exec -i -t loving_heisenberg /bin/bash
+```
+
 ## CI
 
 Use travis: More docu to follow
