@@ -1,2 +1,13 @@
-script:
-- docker build ./linux/jenkins/
+env:
+  global:
+  - secure: aDLwYGKB+s1bh5jOAh1NY0HDXZbJ/7XYIIKjnLdce+MUCpAcnneQ/JPwWPVkff3mlC05Gyum38eseaP0NQb3Ktu7NAuiy0DtjK0cpXMVAZoUfT65O6QvFiliMG+59WjhTcDqEJQ0mZ0tcFv7vVnIgXx9IAtdixULc1rEEkrCGfZbmgXynqVOVun71thye5FrJ8f3ZF5qzI1G8hLivbKVVw0fLzRmObhV1MBrnJVsp3Ldan70fcJesemfOrNVqG6rcKG93VvoEUTOzoUmeKE7fsrqoSBQN3nFaJW3QtG2ZBLPnBn2L7+tTDS76VEBpkzPgfoWPc3MvwrzreGn9tXeROgTtOnW///8+vnLC2SEk5FjHa7e0fFy0QvH4f8nMvioP6TEkHMwFGn0CqlZ3Cq1XTH8fNYq3TfIqmoL8QMlcGjS2ml/PxHMQVzJC4yvrj/qzxk74iaBAXL+c/hqzpSpAiwh02coCfdFvEhOQooi5zG43BulWOxFX2idIqQr/BIFGmwubWRpr8FiOwA8RgTEXku8+aPny6jggHvbd72FtJKMhJpKQy/oN3t6I08tA/WCTK6MTY27nvelTVyDtSnItCW9H5nRqhW66Iowj+V4m/Ym7SBoerrhavQ2OpkjzpaFYjhj5W9PpKlQpl0rMy62xlUThD7BTZ3SYWBvCDJTfsg=
+  - DOCKER_USERNAME: papanito
+  - IMAGETAG: jenkins:latest
+jobs:
+  include:
+  - stage: build
+    script:
+    - docker build -t $DOCKER_USERNAME/$IMAGETAG ./linux/jenkins/
+    - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+    #- docker tag $IMAGETAG $DOCKER_USERNAME/$IMAGETAG
+    - docker push $DOCKER_USERNAME/$IMAGETAG

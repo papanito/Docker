@@ -31,9 +31,10 @@ docker rm $(docker ps -a -q)
 ```
 docker rmi $(docker images -q)
 ```
-s
+
 ### push docker images
-Referemce: https://docs.docker.com/docker-cloud/builds/push-images/
+
+Reference: https://docs.docker.com/docker-cloud/builds/push-images/
 
 Remark do not forget to login via docker login
 
