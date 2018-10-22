@@ -1,15 +1,13 @@
 env:
   global:
-    - secure: dwJW5iLMzUtBPFRbtW6Igr7+X4kG25izr5vZvZfkM8/0NkWy9ZvufX+438B3m+bEodZEJQqMq04ZrSk4bUokROHfJ3LaT8xIHsawsuwGfVwX+plhXguwaKkceD+zkENaf/YqnG9VZKQDO9E4P7UDYQKp2blOSndlta8PgK0e04ClHnG7kDjsPekEkSJ3R9wzuAYHb+VrwF15mf3XP6urum23g+5wDi28mjVr4sDke8G9a2eWpqmEhOBm5mUePo8khcG2mlZ+m+RVJkqnn+V5Een9ZHqA+aewJSL9pIbD5mDz9z9ZxfGlqbdrgAutWC5ZNUM+STa2yYU0oduTLQRYFL0m6TkiKheioM38MMW5WQJpUfvig9dkZUymgo76KTd/x7B39iYalkomu0aNRaxcKssI6GhJN50khBC5+4u18NmprSrz8bFHqWxYUkVSSpheMSRWkbbLNdTdd2rSuQ81C2KITIu/TgpE8eA30a2eTMF9GPowdok9/GEMV7heLsjEfLEkP21UjmvTsyNnIWq9+uYzf0OHukxnCOS5kt2qPh8tpEAdOgQN7U9pTpzOtrqFdeMCC4QngtgoUXRzOHo2i//LkMyqv8FR6KJf1lAwq02BOCVNbh8EIDrnEgjvcwYt+oTZ3GUaumMbqJ4RCZQ6lwE58NcOEJ9Re8FI+ozzwfU=
-    - DOCKER_USERNAME: papanito
-    - IMAGETAG: "jenkins:latest"
+  - secure: aDLwYGKB+s1bh5jOAh1NY0HDXZbJ/7XYIIKjnLdce+MUCpAcnneQ/JPwWPVkff3mlC05Gyum38eseaP0NQb3Ktu7NAuiy0DtjK0cpXMVAZoUfT65O6QvFiliMG+59WjhTcDqEJQ0mZ0tcFv7vVnIgXx9IAtdixULc1rEEkrCGfZbmgXynqVOVun71thye5FrJ8f3ZF5qzI1G8hLivbKVVw0fLzRmObhV1MBrnJVsp3Ldan70fcJesemfOrNVqG6rcKG93VvoEUTOzoUmeKE7fsrqoSBQN3nFaJW3QtG2ZBLPnBn2L7+tTDS76VEBpkzPgfoWPc3MvwrzreGn9tXeROgTtOnW///8+vnLC2SEk5FjHa7e0fFy0QvH4f8nMvioP6TEkHMwFGn0CqlZ3Cq1XTH8fNYq3TfIqmoL8QMlcGjS2ml/PxHMQVzJC4yvrj/qzxk74iaBAXL+c/hqzpSpAiwh02coCfdFvEhOQooi5zG43BulWOxFX2idIqQr/BIFGmwubWRpr8FiOwA8RgTEXku8+aPny6jggHvbd72FtJKMhJpKQy/oN3t6I08tA/WCTK6MTY27nvelTVyDtSnItCW9H5nRqhW66Iowj+V4m/Ym7SBoerrhavQ2OpkjzpaFYjhj5W9PpKlQpl0rMy62xlUThD7BTZ3SYWBvCDJTfsg=
+  - DOCKER_USERNAME: papanito
+  - IMAGETAG: jenkins:latest
 jobs:
   include:
-    - stage: build
-      script:
-        - docker build ./linux/jenkins/
-    - stage: deploy
-      script:
-        - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
-        - docker tag $IMAGETAG $DOCKER_USERNAME/$IMAGETAG
-        - docker push $DOCKER_USERNAME/$IMAGETAG
+  - stage: build
+    script:
+    - docker build -t $DOCKER_USERNAME/$IMAGETAG ./linux/jenkins/
+    - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
+    #- docker tag $IMAGETAG $DOCKER_USERNAME/$IMAGETAG
+    - docker push $DOCKER_USERNAME/$IMAGETAG
