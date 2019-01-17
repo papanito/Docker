@@ -6,32 +6,30 @@ This project contains self-made docker images
 
 Below some useful commands
 
-### remove all images that are not tagged
+### Cleanup
 
-removes all "dangling" docker images
+```bash
+# delete ALL dangling data (i.e. In order: containers stopped, volumes without containers and images with no containers). Even unused data, with -a option.
+docker system prune will
 
-```
+# delete ALL dangling data of a specific type
+docker container prune
+docker image prune
+docker network prune
+docker volume prune
+
+# removes all "dangling" docker images
 docker image rm $(docker images -f "dangling=true" -q)
-```
 
-### remove all exited containers
+# remove all exited containers
+docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs sudo docker rm
 
-```
-sudo docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs sudo docker rm
-```
-
-### Delete all containers
-
-```
+# Delete all containers
 docker rm $(docker ps -a -q)
-```
 
-### Delete all images
-
-```
+# delete all images
 docker rmi $(docker images -q)
 ```
-
 ### push docker images
 
 Reference: https://docs.docker.com/docker-cloud/builds/push-images/
@@ -44,7 +42,6 @@ export DOCKER_ID_USER="papanito"
 docker tag $IMAGETAG $DOCKER_ID_USER/$IMAGETAG
 docker push $DOCKER_ID_USER/$IMAGETAG
 ```
-
 
 ### re-create container
 
